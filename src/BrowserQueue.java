@@ -1,3 +1,4 @@
+// Implements the basic functions of a Queue using the BrowserArrayList class and its circular array structure
 
 import java.util.Iterator;
 

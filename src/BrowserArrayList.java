@@ -1,3 +1,4 @@
+// BrowserArrayList uses a circular array to create a simple ArrayList, with a dynamic array
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,7 +10,7 @@ public class BrowserArrayList<T> implements Iterable<T> {
     private int head;
     private int tail;
 
-    //yes
+    
     @SuppressWarnings("unchecked")
     public BrowserArrayList(){
         arr = (T[]) new Object[CAPACITY];
@@ -18,7 +19,7 @@ public class BrowserArrayList<T> implements Iterable<T> {
         tail = -1;
     }
 
-    @SuppressWarnings("unchecked") //yes - check
+    @SuppressWarnings("unchecked")
     private void resize(){
         
         T[] nArr = (T[]) new Object[arr.length * 2];
@@ -30,7 +31,6 @@ public class BrowserArrayList<T> implements Iterable<T> {
         tail = size - 1;
     }
 
-    //yes
     public int size(){
         return size;
     }
@@ -39,7 +39,6 @@ public class BrowserArrayList<T> implements Iterable<T> {
         return size == 0;
     }
 
-    //yes - check
     public void add (T data){
         if (size == arr.length){
             resize();
@@ -47,15 +46,6 @@ public class BrowserArrayList<T> implements Iterable<T> {
         tail = (tail + 1) % arr.length;
         arr[tail] = data;
         size++;
-    }
-
-    //maybe
-    public T get(int index){
-        if (index < 0 || index >= size){
-            throw new IndexOutOfBoundsException();
-        }
-        int in = (head + index) % arr.length; 
-        return arr[in];
     }
 
     public T remove(){
@@ -69,39 +59,9 @@ public class BrowserArrayList<T> implements Iterable<T> {
         return data;
     }
 
-    // public T remove(int index){
-    //     if (index < 0 || index >= size){
-    //         throw new IndexOutOfBoundsException();
-    //     }
-    //     int in = (head + index) % arr.length; 
-    //     T removedT = arr[in];
-
-    //     if (index < size / 2) {
-    //         for (int i = index; i > 0; i--){
-    //             int cur = (head + i) % arr.length;
-    //             int prev = (head + i - 1) % arr.length;
-    //             arr[cur] = arr[prev];
-    //         }
-    //         head = (head + 1) % arr.length;
-    //     }
-    //     else{
-    //         for (int i = index; i < size - 1; i++){
-    //             int cur = (head + i) % arr.length;
-    //             int next = (head + i + 1) % arr.length;
-    //             arr[cur] = arr[next];
-    //         }
-    //         tail = (tail - 1 + arr.length) % arr.length;
-    //     }
-    //     size--;
-    //     return removedT;
-    // }
-
-
-
     private class BrowserArrayListIterator implements Iterator<T>{
-        private int curIndex = 0 ;
+        private int curIndex = 0;
         
-
         @Override
         public boolean hasNext(){
             return curIndex < size;
@@ -116,8 +76,6 @@ public class BrowserArrayList<T> implements Iterable<T> {
             curIndex++;
             return data;
         }
-
-        
     }
 
     @Override

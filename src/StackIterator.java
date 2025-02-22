@@ -1,3 +1,5 @@
+// StackIterator is the iterator implementation for the BrowserStack. It allows for the search data to be properly saved into
+// a txt file when saving and closing the browser.
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

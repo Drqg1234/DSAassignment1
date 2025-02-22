@@ -26,7 +26,7 @@ public class BrowswerNavigation {
         curPage = url;
         forwardStack = new BrowserStack<>();
         historyQueue.enqueue(url);
-        return "Now at " + url;
+        return "Now at: " + url;
     }
 
     public String goBack(){
@@ -35,7 +35,7 @@ public class BrowswerNavigation {
         }
         forwardStack.push(curPage);
         curPage = backStack.pop();
-        return "Now at " + curPage;
+        return "Now at: " + curPage;
     }
 
     public String goForward(){
@@ -47,6 +47,7 @@ public class BrowswerNavigation {
         return "Now at " + curPage;
     }
 
+    // Uses a StringBuilder to make string appending and printing easier
     public String showHistory(){
         if (historyQueue.isEmpty()){
             return "No browsing history available.";
@@ -58,6 +59,7 @@ public class BrowswerNavigation {
         return history.toString();
     }
 
+    // Clearing history in a real browser only clears the history and not the cache, so theres no need to clear the backstack
     public String clearHistory(){
         historyQueue = new BrowserQueue<>();
         return "Browsing history cleared.";
@@ -94,7 +96,8 @@ public class BrowswerNavigation {
                 writer.write(url + ",");
             }
             writer.newLine();
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -108,31 +111,44 @@ public class BrowswerNavigation {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
+
+                // Parsing the string data in the session_data.txt file for adding
                 String[] parts = line.split(":");
-                if (parts.length < 2) continue;
+                if (parts.length < 2) {
+                    continue;
+                }
                 String type = parts[0];
                 String[] urls = parts[1].split(",");
 
+                // Appends previous information to the current stacks instead of clearing and adding (don't want to lose current data)
                 switch (type) {
                     case "BACK_STACK" -> {
                         for (String url : urls) {
-                            if (!url.isEmpty()) backStack.push(url);
+                            if (!url.isEmpty()) {
+                                backStack.push(url);
+                            }
                         }
                     }
                     case "FORWARD_STACK" -> {
                         for (String url : urls) {
-                            if (!url.isEmpty()) forwardStack.push(url);
+                            if (!url.isEmpty()){
+                                forwardStack.push(url); 
+                            } 
                         }
                     }
                     case "HISTORY_QUEUE" -> {
                         for (String url : urls) {
-                            if (!url.isEmpty()) historyQueue.enqueue(url);
+                            if (!url.isEmpty()) {
+                                historyQueue.enqueue(url);    
+                            }
+                            
                         }
                     }
                 }
             }
             return true;
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
             return false;
         }

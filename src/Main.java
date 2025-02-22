@@ -1,3 +1,4 @@
+// 
 
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class Main {
         Scanner file = new Scanner(System.in);
 
         while (true){
-            System.out.println("Web Browser Navigation System");
+            System.out.println("\nWeb Browser Navigation System");
             System.out.println("1: Visit a Website");
             System.out.println("2: Go Back");
             System.out.println("3: Go Forward");
@@ -17,7 +18,7 @@ public class Main {
             System.out.println("6: Close Browser and Save Current Session");
             System.out.println("7: Restore Last Session");
             System.out.println("8. Exit");
-            System.out.println("Choose a number");
+            System.out.println("Choose a number:");
             int choice = file.nextInt();
             file.nextLine();
 

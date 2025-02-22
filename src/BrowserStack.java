@@ -1,3 +1,4 @@
+// A custom stack that uses the BrowserLinkedList to create a basic Stack class (push, pop, and getters)
 
 import java.util.EmptyStackException;
 import java.util.Iterator;
