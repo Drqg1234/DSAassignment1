@@ -48,6 +48,7 @@ As mentioned previously, with my implementation of the `main()` class, testing t
 > `BrowserLinkedList(), isEmpty(), getTail(), add(T data), removeLast(), size(), iterator(), hasNext(), next()`
 
 `O(1)`:
+
 `BrowserLinkedList()`: Assignment is constant time
 `isEmpty()`: Comparison is constant time
 `getTail()`: Direct access is constant time
@@ -63,6 +64,7 @@ All other iterator methods are constant time: you are either returning or updati
 All methods besides `resize()` and `add(T data)` are `O(1)`: they are all either returning a value, comparing 2 things, assigning variables, or assigning pointers
 
 `O(n)`:
+
 `resize()`: Involves creating a new array and copying down each value of the old into the new
 `add(T data)`: its worst case scenario involves using `resize()`
 
@@ -77,6 +79,7 @@ All methods are `O(1)` since all the methods do is call the BrowserLinkedList me
 All methods besides `enqueue(T data)` are `O(1)`
 
 `O(n)`:
+
 `enqueue(T data)`: Is using the adding method of the BrowserArrayList class, which was of time complexity
 
 #### StackIterator
@@ -88,6 +91,7 @@ All methods here use the same logic as the iterator in the BrowserLinkedList cla
 > `BrowserNavigation(), visitWebsite(String url), openUrl(String url), goBack(), goForward(), showHistory(), clearHistory(), closeBrowser(), restoreLastSession(), saveSession(), loadSession()`
 
 `O(1)`:
+
 `BrowserNavigation()`: Assigning variables
 `openUrl(String url)`: Desktop.browse() uses constant time
 `goBack()`: Stack operations are all constant
@@ -95,9 +99,11 @@ All methods here use the same logic as the iterator in the BrowserLinkedList cla
 `clearHistory()`: Reinitializing the queue is constant
 
 `O(n)`:
+
 `visitWebsite(String url)`: Stack operations are all constant but enqueuing onto the queue is linear
 
 `O(m)`:
+
 `showHistory()`: Iterating through the queue takes linear time where m is the size of the queue
 
 `O(m + n + p)`:
@@ -110,9 +116,11 @@ All methods here use the same logic as the iterator in the BrowserLinkedList cla
 > `visitPage(Scanner file, BrowserNavigation br), main()`
 
 `O(1)`:
+
 `visitPage(Scanner file, BrowserNavigation br)`: Reading input and printing it out using `openUrl(String url)` uses constant time
 
 `main()`:
+
 Each case has their own time complexity that corresponds to the methods that they are using. All corresponding methods and their time complexities have been previously mentioned.
 `O(1)`: case 2, 3, 5, 8, default
 `O(n)`: case 1
