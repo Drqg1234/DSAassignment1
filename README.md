@@ -107,6 +107,7 @@ All methods here use the same logic as the iterator in the BrowserLinkedList cla
 `showHistory()`: Iterating through the queue takes linear time where m is the size of the queue
 
 `O(m + n + p)`:
+
 `saveSession()`: Writing the contents of the forward, backward stacks, and the history queue into `session_data.txt` takes m + n + p, where each represents the sizes of their respective data structure
 `closeBrowser()`: Uses the previous method to work
 `loadSession()`: Reads and write data from the `session_data.txt` file into the respective stacks and queue. Using their iterators, this takes m + n + p time.
