@@ -35,7 +35,6 @@ public class BrowserLinkedList<T> implements Iterable<T> {
         return tail;
     }
 
-    
     public void add(T data){
         Node<T> node = new Node<>(data);
         if (head == null){
@@ -49,6 +48,7 @@ public class BrowserLinkedList<T> implements Iterable<T> {
         }
         size++;
     }
+    
     public T removeLast(){
         if (tail == null){
             throw new NoSuchElementException();

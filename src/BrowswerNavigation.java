@@ -1,9 +1,11 @@
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 
 
 public class BrowswerNavigation {
@@ -25,9 +27,21 @@ public class BrowswerNavigation {
         }
         curPage = url;
         forwardStack = new BrowserStack<>();
-        historyQueue.enqueue(url);
+        historyQueue.enqueue(url);     
         return "Now at: " + url;
     }
+
+    // Very basic URL opening, it needs to be exactly as it is in the url of a browser (https://www.youtube.com)
+    public void openUrl(String url){
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(new URI(url));
+        }
+        catch (Exception e) {
+            System.out.println("Not a valid link, cannot open webpage in search engine!");
+        }
+    }
+
 
     public String goBack(){
         if (backStack.isEmpty()){
@@ -35,6 +49,7 @@ public class BrowswerNavigation {
         }
         forwardStack.push(curPage);
         curPage = backStack.pop();
+        
         return "Now at: " + curPage;
     }
 
