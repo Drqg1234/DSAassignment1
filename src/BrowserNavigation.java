@@ -8,13 +8,13 @@ import java.io.IOException;
 import java.net.URI;
 
 
-public class BrowswerNavigation {
+public class BrowserNavigation {
     public BrowserStack<String> backStack;
     public BrowserStack<String> forwardStack;
     public BrowserQueue<String> historyQueue;
     public String curPage;
 
-    public BrowswerNavigation(){
+    public BrowserNavigation(){
         backStack = new BrowserStack<>();
         forwardStack = new BrowserStack<>();
         historyQueue = new BrowserQueue<>();
@@ -49,7 +49,6 @@ public class BrowswerNavigation {
         }
         forwardStack.push(curPage);
         curPage = backStack.pop();
-        
         return "Now at: " + curPage;
     }
 
@@ -156,7 +155,6 @@ public class BrowswerNavigation {
                             if (!url.isEmpty()) {
                                 historyQueue.enqueue(url);    
                             }
-                            
                         }
                     }
                 }

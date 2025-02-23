@@ -45,3 +45,76 @@ As mentioned previously, with my implementation of the `main()` class, testing t
 
 ### Time Complexity
 #### BrowserLinkedlist:
+> `BrowserLinkedList(), isEmpty(), getTail(), add(T data), removeLast(), size(), iterator(), hasNext(), next()`
+
+`O(1)`:
+`BrowserLinkedList()`: Assignment is constant time
+`isEmpty()`: Comparison is constant time
+`getTail()`: Direct access is constant time
+`add(T data)`: With the use of 2 pointers, regardless of size, the operations are just assignment
+`removeLast()`: Updating pointers is constant time
+`size()`: Returning is constant time
+All other iterator methods are constant time: you are either returning or updating pointers
+
+
+#### BrowserArrayList:
+> `BrowserArrayList(), resize(), add(T data), size(), isEmpty(), remove(), iterator(), hasNext(), next()`
+
+All methods besides `resize()` and `add(T data)` are `O(1)`: they are all either returning a value, comparing 2 things, assigning variables, or assigning pointers
+
+`O(n)`:
+`resize()`: Involves creating a new array and copying down each value of the old into the new
+`add(T data)`: its worst case scenario involves using `resize()`
+
+#### BrowserStack
+> `BrowserStack(), push(), pop(), isEmpty(), iterator()`
+
+All methods are `O(1)` since all the methods do is call the BrowserLinkedList methods, which are all `O(1)`
+
+#### BrowserQueue
+> `BrowserQueue(), enqueue(T data), dequeue(), isEmpty(), iterator()`
+
+All methods besides `enqueue(T data)` are `O(1)`
+
+`O(n)`:
+`enqueue(T data)`: Is using the adding method of the BrowserArrayList class, which was of time complexity
+
+#### StackIterator
+> `StackIterator(), hasNext(), next()`
+
+All methods here use the same logic as the iterator in the BrowserLinkedList class = `O(1)`
+
+#### BrowserNavigation
+> `BrowserNavigation(), visitWebsite(String url), openUrl(String url), goBack(), goForward(), showHistory(), clearHistory(), closeBrowser(), restoreLastSession(), saveSession(), loadSession()`
+
+`O(1)`:
+`BrowserNavigation()`: Assigning variables
+`openUrl(String url)`: Desktop.browse() uses constant time
+`goBack()`: Stack operations are all constant
+`goForward()`: Stack operations are all constant
+`clearHistory()`: Reinitializing the queue is constant
+
+`O(n)`:
+`visitWebsite(String url)`: Stack operations are all constant but enqueuing onto the queue is linear
+
+`O(m)`:
+`showHistory()`: Iterating through the queue takes linear time where m is the size of the queue
+
+`O(m + n + p)`:
+`saveSession()`: Writing the contents of the forward, backward stacks, and the history queue into `session_data.txt` takes m + n + p, where each represents the sizes of their respective data structure
+`closeBrowser()`: Uses the previous method to work
+`loadSession()`: Reads and write data from the `session_data.txt` file into the respective stacks and queue. Using their iterators, this takes m + n + p time.
+`restoreLastSession()`: Uses the previous method to work
+
+#### Main
+> `visitPage(Scanner file, BrowserNavigation br), main()`
+
+`O(1)`:
+`visitPage(Scanner file, BrowserNavigation br)`: Reading input and printing it out using `openUrl(String url)` uses constant time
+
+`main()`:
+Each case has their own time complexity that corresponds to the methods that they are using. All corresponding methods and their time complexities have been previously mentioned.
+`O(1)`: case 2, 3, 5, 8, default
+`O(n)`: case 1
+`O(m)`: case 4
+`O(m + n + p)`: case 6, 7

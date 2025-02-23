@@ -1,4 +1,4 @@
-// BrowserArrayList uses a circular array to create a simple ArrayList, with a dynamic array
+// BrowserArrayList uses a circular array to create a simple ArrayList with basic getters, add, and remove
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -21,8 +21,7 @@ public class BrowserArrayList<T> implements Iterable<T> {
 
     @SuppressWarnings("unchecked")
     private void resize(){
-        
-        T[] nArr = (T[]) new Object[arr.length * 2];
+        T[] nArr = (T[]) new Object[arr.length * 2]; // Increase the new array size by a factor of 2 as mentioned in class
         for (int i = 0; i < size; i++){
             nArr[i] = arr[(head + i) % arr.length];
         }
@@ -43,7 +42,7 @@ public class BrowserArrayList<T> implements Iterable<T> {
         if (size == arr.length){
             resize();
         }
-        tail = (tail + 1) % arr.length;
+        tail = (tail + 1) % arr.length; // If at the end, wrap around (circularity)
         arr[tail] = data;
         size++;
     }
